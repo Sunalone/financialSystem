@@ -2,13 +2,14 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import { resolve } from "path";
 import PostcssPresetEnv from "postcss-preset-env";
+import { viteElectronDev, viteElectronProd } from "./src/plugins";
 
 export default defineConfig(({ mode }) => {
     const isProduction = mode === "production";
 
     return {
         base: "./",
-        plugins: [react()],
+        plugins: [react(), viteElectronDev(), viteElectronProd()],
         resolve: {
             alias: {
                 "@": resolve(__dirname, "src"),

@@ -2,7 +2,6 @@
   "name": "client",
   "private": true,
   "version": "0.0.0",
-  "type": "module",
   "scripts": {
     "dev": "vite",
     "build-dev": "tsc && vite build --mode development",
@@ -30,6 +29,8 @@
     "@typescript-eslint/eslint-plugin": "^5.57.1",
     "@typescript-eslint/parser": "^5.57.1",
     "@vitejs/plugin-react": "^4.0.0",
+    "electron": "^26.3.0",
+    "electron-builder": "^24.6.4",
     "eslint": "^8.40.0",
     "eslint-config-react-app": "^7.0.1",
     "eslint-plugin-react-hooks": "^4.6.0",

@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Box, Typography, useTheme } from "@mui/material";
 import FlexBetween from "@/components/FlexBetween";
 import PixIcon from "@mui/icons-material/Pix";
+import React from "react";
 
 const DASHBOARD = "dashboard";
 const overview = "overview";
@@ -10,6 +11,10 @@ const overview = "overview";
 const NavBar: React.FC = () => {
     const { palette } = useTheme();
     const [selected, setSelected] = useState(true);
+
+    React.useEffect(() => {
+        fetch("./some").then((res) => console.log(res));
+    }, []);
 
     return (
         <FlexBetween mb="0.25rem" p="0.5rem 0rem" color={palette.grey[300]}>
