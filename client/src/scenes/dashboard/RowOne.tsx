@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import React from "react";
 import DashboardBox from "@/components/DashboardBox";
 import BoxHeader from "@/components/BoxHeader";
 import initChart from "@/state/echarts";
@@ -258,7 +258,7 @@ const RowOne = () => {
         });
     };
 
-    useEffect(() => {
+    React.useEffect(() => {
         initRevenueExpensesChart();
         initProfitChart();
         initRevenueChart();

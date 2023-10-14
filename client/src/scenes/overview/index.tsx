@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import React from "react";
 import DashboardBox from "@/components/DashboardBox";
 import { Box, useTheme } from "@mui/material";
 import initChart from "@/state/echarts";
@@ -103,7 +103,7 @@ const Overview = () => {
         });
     };
 
-    useEffect(() => {
+    React.useEffect(() => {
         initOverviewChart();
     }, [revenueData, expensesData, xAxisMonthData]);
 

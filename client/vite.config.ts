@@ -9,13 +9,25 @@ export default defineConfig(({ mode }) => {
 
     return {
         base: "./",
-        plugins: [react(), viteElectronDev(), viteElectronProd()],
-        resolve: {
-            alias: {
-                "@": resolve(__dirname, "src"),
+        server: {
+            proxy: {
+                "/api": {
+                    target: "http://localhost:3000",
+                    changeOrigin: true,
+                    rewrite: (path) => path.replace(/\/^api/, ""),
+                },
             },
+        },
+        resolve: {
+            alias: [
+                {
+                    find: "@",
+                    replacement: resolve("./src"),
+                },
+            ],
             extensions: [".tsx", ".ts", ".js"],
         },
+        plugins: [react(), viteElectronProd()],
         build: {
             target: "es2015",
             assetsInlineLimit: 1024 * 8, // 8kb

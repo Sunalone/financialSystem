@@ -1,6 +1,14 @@
 {
-  "extends":"react-app",
-  "rules": {
-    "react-hooks/exhaustive-deps":"off"
-  }
+    "extends": "react-app",
+    "rules": {
+        "react-hooks/exhaustive-deps": "off"
+    },
+    "settings": {
+        "import/resolver": {
+            "alias": {
+                "map": [["@", "./src"]],
+                "extensions": [".ts", ".tsx"]
+            }
+        }
+    }
 }
