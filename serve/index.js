@@ -27,7 +27,6 @@ mongoose
     .connect("mongodb://localhost:27017/web")
     .then(async () => {
         console.log("连接成功");
-
         app.listen(PORT, () => console.log(`server is running at ${PORT}`));
     })
     .catch(() => {

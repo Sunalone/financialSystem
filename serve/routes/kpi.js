@@ -3,7 +3,7 @@ import Kpi from "../models/kpiModel.js";
 
 const router = express.Router();
 
-router.get("/kpis", async (req, res) => {
+router.post("/kpis", async (req, res) => {
     try {
         const kpis = await Kpi.find();
         res.status(200).json(kpis);

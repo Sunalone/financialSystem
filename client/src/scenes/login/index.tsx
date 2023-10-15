@@ -1,7 +1,9 @@
 import React from "react";
 import Card from "@/components/Card";
-import { Button, Form, Input, Space, Tabs } from "antd";
+import { useNavigate } from "react-router-dom";
+import { Button, Form, Input, Space, Tabs, message } from "antd";
 import { LockOutlined, UserOutlined } from "@ant-design/icons";
+import { useLoginMutation, useRegisterMutation } from "@/state/api";
 import styles from "./index.module.less";
 
 enum ETabType {
@@ -38,9 +40,27 @@ type TLoginFormProps = {
 
 const LoginForm: React.FC<TLoginFormProps> = ({ type }) => {
     const [form] = Form.useForm();
+    const [login] = useLoginMutation();
+    const [register] = useRegisterMutation();
+    const navigate = useNavigate();
 
-    const onFinish = (values: any) => {
-        console.log(values);
+    const onFinish = async (values: any) => {
+        let response: any;
+        if (type === ETabType.LOING) {
+            response = await login(values);
+        } else {
+            response = await register(values);
+        }
+        const {
+            data: { result, message: responseMessage, token },
+        } = response;
+        if (result === 0) {
+            message.error(responseMessage);
+            return;
+        }
+        message.success(responseMessage);
+        localStorage.setItem("token", token);
+        navigate("/dashboard");
     };
 
     return (
@@ -64,7 +84,6 @@ const Login = () => {
     return (
         <Card
             cardStyle={{
-                position: "relative",
                 height: 400,
                 margin: "100px auto",
                 backgroundColor: "aliceblue",

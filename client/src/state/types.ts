@@ -74,3 +74,13 @@ export enum EMonth {
 export interface GetMonthKpiDataRequest {
     month: string;
 }
+
+export interface LoginRequest {
+    id: string;
+    password: string;
+}
+
+export interface LoginResponse {
+    message: string;
+    result: string;
+}
