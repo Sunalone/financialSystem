@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import React from "react";
 import BoxHeader from "@/components/BoxHeader";
 import DashboardBox from "@/components/DashboardBox";
 import FlexBetween from "@/components/FlexBetween";
@@ -121,7 +121,7 @@ const RowThree = () => {
         });
     };
 
-    useEffect(() => {
+    React.useEffect(() => {
         initExpensesCategoryPieChart();
         initPriceExpensesPieChart();
     }, [expensesCategoryData, priceExpensesData]);

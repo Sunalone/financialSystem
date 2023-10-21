@@ -1,14 +1,10 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import {
-    GetKpisResponse,
-    GetProductsResponse,
-    GetTransactionsResponse,
-} from "./types";
+import { GetKpisResponse, GetProductsResponse, GetTransactionsResponse, LoginRequest, LoginResponse } from "./types";
 
 export const api = createApi({
-    baseQuery: fetchBaseQuery({ baseUrl: import.meta.env.VITE_BASE_URL }),
+    baseQuery: fetchBaseQuery({ baseUrl: import.meta.env.VITE_BASE_URL, method: "post" }),
     reducerPath: "main",
-    tagTypes: ["Kpis", "Products", "Transactions", "MonthData"],
+    tagTypes: ["Kpis", "Products", "Transactions", "MonthData", "Login"],
     endpoints: (build) => ({
         getKpis: build.query<GetKpisResponse[], void>({
             query: () => "kpi/kpis",
@@ -22,8 +18,26 @@ export const api = createApi({
             query: () => "transaction/transactions",
             providesTags: ["Transactions"],
         }),
+        login: build.mutation<LoginResponse, LoginRequest>({
+            query(params) {
+                return {
+                    url: "user/login",
+                    method: "post",
+                    body: params,
+                };
+            },
+        }),
+        register: build.mutation<any, LoginRequest>({
+            query(params) {
+                return {
+                    url: "user/register",
+                    method: "post",
+                    body: params,
+                };
+            },
+        }),
     }),
 });
 
-export const { useGetKpisQuery, useGetProductsQuery, useGetTransactionsQuery } =
+export const { useGetKpisQuery, useGetProductsQuery, useGetTransactionsQuery, useLoginMutation, useRegisterMutation } =
     api;

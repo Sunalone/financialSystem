@@ -1,4 +1,4 @@
-import {
+import React, {
     useMemo,
     useContext,
     createContext,
@@ -71,36 +71,23 @@ const CommonContext = (props: CommonContextProps) => {
     }, [monthlyData]);
 
     const xAxisMonthData = useMemo(() => {
-        return (
-            monthlyData &&
-            monthlyData.map((item) => item.month.substring(0, 3).toUpperCase())
-        );
+        return monthlyData && monthlyData.map((item) => item.month.substring(0, 3).toUpperCase());
     }, [monthlyData]);
 
     const profitData = useMemo(() => {
-        return (
-            monthlyData &&
-            monthlyData.map((item) => (item.revenue - item.expenses).toFixed(2))
-        );
+        return monthlyData && monthlyData.map((item) => (item.revenue - item.expenses).toFixed(2));
     }, [monthlyData]);
 
     const operationalExpenses = useMemo(() => {
-        return (
-            monthlyData && monthlyData.map((item) => item.operationalExpenses)
-        );
+        return monthlyData && monthlyData.map((item) => item.operationalExpenses);
     }, [monthlyData]);
 
     const nonOperationalExpenses = useMemo(() => {
-        return (
-            monthlyData &&
-            monthlyData.map((item) => item.nonOperationalExpenses)
-        );
+        return monthlyData && monthlyData.map((item) => item.nonOperationalExpenses);
     }, [monthlyData]);
 
     const scatterData = useMemo(() => {
-        return (
-            productData && productData.map((item) => [item.price, item.expense])
-        );
+        return productData && productData.map((item) => [item.price, item.expense]);
     }, [productData]);
 
     const totalData = useMemo(() => {
@@ -133,12 +120,12 @@ const CommonContext = (props: CommonContextProps) => {
             return;
         }
 
-        const expensesByCategory = kpiData[0].expensesByCategory[0];
+        const expensesByCategory = kpiData[0].expensesByCategory;
         const dataKeyList = Object.entries(expensesByCategory);
 
         return dataKeyList.map((item, index) => ({
             name: item[0],
-            value: parseInt(item[1].substring(1)),
+            value: parseInt(String(item[1]).substring(1)),
             itemStyle: {
                 color: palette.primary[(index + 1) * 200],
             },
@@ -150,15 +137,9 @@ const CommonContext = (props: CommonContextProps) => {
             return;
         }
         const totalExpense = Math.round(
-            productData
-                .map((item) => item.expense)
-                .reduce((pre, current) => pre + current, 0),
+            productData.map((item) => item.expense).reduce((pre, current) => pre + current, 0)
         );
-        const totalPrice = Math.round(
-            productData
-                .map((item) => item.price)
-                .reduce((pre, current) => pre + current, 0),
-        );
+        const totalPrice = Math.round(productData.map((item) => item.price).reduce((pre, current) => pre + current, 0));
         return [
             {
                 name: "expenses",
@@ -191,7 +172,7 @@ const CommonContext = (props: CommonContextProps) => {
             priceExpensesData,
             productData,
         }),
-        [kpiData, productData],
+        [kpiData, productData]
     );
 
     return <Context.Provider value={value}>{props.children}</Context.Provider>;
