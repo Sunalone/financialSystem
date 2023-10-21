@@ -9,6 +9,7 @@ import Dashboard from "@/scenes/dashboard";
 import Overview from "@/scenes/overview";
 import Login from "@/scenes/login";
 import CommonContextProvider from "./context/commonContext";
+// import { Counter } from "@/scenes/Counter";
 
 const App: React.FC = () => {
     const theme = useMemo(() => createTheme(themeSettings), []);
