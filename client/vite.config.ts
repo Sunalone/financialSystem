@@ -6,6 +6,12 @@ import { viteElectronDev, viteElectronProd } from "./src/plugins";
 
 export default defineConfig(({ mode }) => {
     const isProduction = mode === "production";
+    const isElectron = process.argv.includes("electron");
+    const plugins = [react(), viteElectronProd()];
+
+    if (isElectron) {
+        plugins.push(viteElectronDev());
+    }
 
     return {
         base: "./",
@@ -27,7 +33,7 @@ export default defineConfig(({ mode }) => {
             ],
             extensions: [".tsx", ".ts", ".js"],
         },
-        plugins: [react(), viteElectronProd()],
+        plugins,
         build: {
             target: "es2015",
             assetsInlineLimit: 1024 * 8, // 8kb

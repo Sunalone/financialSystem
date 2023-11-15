@@ -4,6 +4,7 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
+    "dev:electron": "vite --mode development --port 8080 -- --runtimeEnv electron",
     "build-dev": "tsc && vite build --mode development",
     "build-prod": "tsc && vite build --mode production",
     "lint": "eslint src --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
