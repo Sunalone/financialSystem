@@ -9,17 +9,17 @@ body,
 }
 
 ::-webkit-scrollbar {
-  width: 10px;
+    width: 10px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #242427;
+    background: #242427;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #48494e;
+    background: #48494e;
 }
 
 ::-webkit-scrollbar-track:hover {
-  background: #2a2b2f;
+    background: #2a2b2f;
 }

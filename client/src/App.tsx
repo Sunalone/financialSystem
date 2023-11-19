@@ -9,6 +9,7 @@ import Dashboard from "@/scenes/dashboard";
 import Overview from "@/scenes/overview";
 import Login from "@/scenes/login";
 import CommonContextProvider from "./context/commonContext";
+import Test from "./scenes/Test";
 // import { Counter } from "@/scenes/Counter";
 
 const App: React.FC = () => {
@@ -26,6 +27,7 @@ const App: React.FC = () => {
                                 <Route path="/" element={<Login />} />
                                 <Route path="/dashboard" element={<Dashboard />} />
                                 <Route path="/overview" element={<Overview />} />
+                                <Route path="/test" element={<Test />} />
                             </Routes>
                         </CommonContextProvider>
                     </Box>
