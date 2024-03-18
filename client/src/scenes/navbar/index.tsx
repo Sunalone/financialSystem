@@ -21,7 +21,7 @@ const NavBar: React.FC = () => {
             <FlexBetween gap="0.75rem">
                 <SlackOutlined style={{ fontSize: "18px" }} />
                 <Typography variant="h4" fontSize="16px">
-                    数据时代
+                    Data Age
                 </Typography>
             </FlexBetween>
 

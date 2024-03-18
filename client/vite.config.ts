@@ -3,13 +3,25 @@ import react from "@vitejs/plugin-react";
 import { resolve } from "path";
 import PostcssPresetEnv from "postcss-preset-env";
 import { viteElectronDev, viteElectronProd } from "./src/plugins";
+import ViteCdnPlugin, { autoComplete } from "vite-plugin-cdn-import";
 
 export default defineConfig(({ mode }) => {
     const isProduction = mode === "production";
     const isElectron = process.argv.includes("electron");
-    const plugins = [react(), viteElectronProd()];
+    const plugins = [
+        react(),
+        ViteCdnPlugin({
+            modules: [autoComplete("react"), autoComplete("react-dom"), autoComplete("antd")],
+        }),
+    ].flat();
 
     if (isElectron) {
+        if (isProduction) {
+            // 构建生产环境包
+            plugins.push(viteElectronProd());
+            return;
+        }
+        // 构建开发环境
         plugins.push(viteElectronDev());
     }
 
@@ -47,6 +59,7 @@ export default defineConfig(({ mode }) => {
             },
             rollupOptions: {
                 output: {
+                    // 分包策略
                     manualChunks(id) {
                         if (id.includes("node_modules")) {
                             return "vendor";

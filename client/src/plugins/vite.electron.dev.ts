@@ -15,7 +15,6 @@ const viteElectronDev = (): Plugin => {
                 const addressInfo = server?.httpServer?.address() as AddressInfo;
                 const IP = `http://localhost:${addressInfo.port}`;
                 const createElectronProcess = () => spawn(electron as unknown as string, ["dist/background.js", IP]);
-                createElectronProcess;
                 let electronProcess: ChildProcessWithoutNullStreams = createElectronProcess();
 
                 fs.watchFile("src/background.ts", () => {
